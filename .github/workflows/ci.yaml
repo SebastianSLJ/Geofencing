@@ -1,10 +1,10 @@
-name: CI Code Quality & Setup
+name: CI Backend Quality
 
 on:
   push
 
 jobs:
-  lint-and-setup:
+  lint-and-format:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,13 +17,13 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install linters
+      - name: Install Ruff
         run: |
           python -m pip install --upgrade pip
-          pip install black isort
+          pip install ruff
 
-      - name: Check imports formatting (isort)
-        run: isort --check-only --profile black .
+      - name: Check Ruff Linter
+        run: ruff check Backend/
 
-      - name: Check code formatting (Black)
-        run: black --check .
+      - name: Check Ruff Formatting
+        run: ruff format --check Backend/

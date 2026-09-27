@@ -5,3 +5,4 @@ include = ["Backend/**/*.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "W"]
+ignore = ["E501"]
